@@ -13,8 +13,7 @@
 		"test:coverage": "vitest run --coverage",
 		"prepare": "husky",
 		"format": "prettier --write .",
-		"format:check": "prettier --check .",
-		"pre-commit": "lint-staged"
+		"format:check": "prettier --check ."
 	},
 	"dependencies": {
 		"@tanstack/react-query": "^5.69.0",
@@ -44,20 +43,12 @@
 		"cross-env": "^7.0.3",
 		"eslint": "^9",
 		"eslint-config-next": "15.2.4",
-		"husky": "^9.1.7",
 		"jsdom": "^26.0.0",
-		"lint-staged": "^15.5.0",
 		"prettier": "^3.5.3",
 		"prettier-plugin-tailwindcss": "^0.6.11",
 		"tailwindcss": "^4",
 		"typescript": "^5",
 		"typescript-eslint": "^8.28.0",
 		"vitest": "^3.0.9"
-	},
-	"lint-staged": {
-		"src/**/*.{js,jsx,ts,tsx}": [
-			"next lint --fix",
-			"prettier --write"
-		]
 	}
 }
