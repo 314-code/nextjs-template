@@ -11,9 +11,9 @@
 		"test": "vitest",
 		"test:ui": "vitest --ui",
 		"test:coverage": "vitest run --coverage",
-		"prepare": "husky",
 		"format": "prettier --write .",
-		"format:check": "prettier --check ."
+		"format:check": "prettier --check .",
+		"prepare": "husky"
 	},
 	"dependencies": {
 		"@tanstack/react-query": "^5.69.0",
@@ -43,6 +43,7 @@
 		"cross-env": "^7.0.3",
 		"eslint": "^9",
 		"eslint-config-next": "15.2.4",
+		"husky": "^9.1.7",
 		"jsdom": "^26.0.0",
 		"prettier": "^3.5.3",
 		"prettier-plugin-tailwindcss": "^0.6.11",
