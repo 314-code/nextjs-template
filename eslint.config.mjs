@@ -13,7 +13,7 @@ const compat = new FlatCompat({
 
 const isProduction = process.env.NODE_ENV === "production";
 
-export default [
+const eslintConfig = [
 	// Spread existing configurations
 	...compat.extends("next/core-web-vitals", "next/typescript"),
 
@@ -62,6 +62,8 @@ export default [
 		},
 
 		// Ignore specific files
-		ignores: ["node_modules/", ".next/", "dist/", "build/", "coverage/"],
+		ignores: ["node_modules/", ".next/", "dist/", "build/", "coverage/", "commitlint.config.js"],
 	},
 ];
+
+export default eslintConfig;

@@ -7,5 +7,6 @@ module.exports = {
 			"always",
 			["build", "chore", "ci", "docs", "feat", "fix", "perf", "refactor", "revert", "style", "test"],
 		],
+		"scope-case": [2, "always", "upper-case"],
 	},
 };
