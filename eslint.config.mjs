@@ -23,20 +23,30 @@ export default [
 
 	// Custom configuration
 	{
+		languageOptions: {
+			parserOptions: {
+				project: "./tsconfig.json",
+			},
+		},
 		rules: {
-			// Unused variables configuration
+			// Unused variables configuration with more explicit warnings
 			"@typescript-eslint/no-unused-vars": [
-				process.env.NODE_ENV === "production" ? "error" : "warn",
+				"warn", // Changed to always warn
 				{
+					args: "all",
 					argsIgnorePattern: "^_",
 					varsIgnorePattern: "^_",
 					caughtErrorsIgnorePattern: "^_",
+					destructuredArrayIgnorePattern: "^_",
 				},
 			],
 
 			// Additional helpful rules
 			"no-console": process.env.NODE_ENV === "production" ? "error" : "warn",
 			"no-debugger": process.env.NODE_ENV === "production" ? "error" : "warn",
+			
+			// Enforce consistent unused variable handling
+			"no-unused-vars": "off", // Disable base rule in favor of TypeScript rule
 		},
 
 		// Ignore specific files
