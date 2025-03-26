@@ -62,7 +62,7 @@ const eslintConfig = [
 		},
 
 		// Ignore specific files
-		ignores: ["node_modules/", ".next/", "dist/", "build/", "coverage/", "commitlint.config.js"],
+		ignores: ["node_modules/", ".next/", "dist/", "build/", "coverage/"],
 	},
 ];
 
