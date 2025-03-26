@@ -7,13 +7,12 @@
 		"build": "next build",
 		"start": "next start",
 		"lint": "next lint",
-		"lint:prod": "cross-env NODE_ENV=production next lint",
-		"lint:fix": "cross-env NODE_ENV=production next lint --fix",
+		"lint:fix": "next lint --fix",
 		"test": "vitest",
 		"test:ui": "vitest --ui",
-		"test:coverage": "vitest run --coverate",
+		"test:coverage": "vitest run --coverage",
 		"prepare": "husky",
-		"format": "cross-env NODE_ENV=production prettier --write .",
+		"format": "prettier --write .",
 		"format:check": "prettier --check .",
 		"pre-commit": "lint-staged"
 	},
@@ -56,8 +55,8 @@
 		"vitest": "^3.0.9"
 	},
 	"lint-staged": {
-		"**/*.{js,jsx,ts,tsx}": [
-			"pnpm lint:fix",
+		"src/**/*.{js,jsx,ts,tsx}": [
+			"next lint --fix",
 			"prettier --write"
 		]
 	}
