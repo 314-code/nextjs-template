@@ -1,8 +1,8 @@
-import { dirname } from "path";
-import { fileURLToPath } from "url";
 import { FlatCompat } from "@eslint/eslintrc";
 import eslint from "@eslint/js";
+import { dirname } from "path";
 import tseslint from "typescript-eslint";
+import { fileURLToPath } from "url";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -10,6 +10,8 @@ const __dirname = dirname(__filename);
 const compat = new FlatCompat({
 	baseDirectory: __dirname,
 });
+
+const isProduction = process.env.NODE_ENV === "production";
 
 export default [
 	// Spread existing configurations
@@ -29,24 +31,34 @@ export default [
 			},
 		},
 		rules: {
-			// Unused variables configuration with more explicit warnings
-			"@typescript-eslint/no-unused-vars": [
-				"warn", // Changed to always warn
-				{
-					args: "all",
-					argsIgnorePattern: "^_",
-					varsIgnorePattern: "^_",
-					caughtErrorsIgnorePattern: "^_",
-					destructuredArrayIgnorePattern: "^_",
-				},
-			],
+			// Unused variables configuration
+			"@typescript-eslint/no-unused-vars": isProduction
+				? "error" // Error in production
+				: [
+						"warn",
+						{
+							argsIgnorePattern: "^_",
+							varsIgnorePattern: "^_",
+							caughtErrorsIgnorePattern: "^_",
+						},
+					],
 
-			// Additional helpful rules
-			"no-console": process.env.NODE_ENV === "production" ? "error" : "warn",
-			"no-debugger": process.env.NODE_ENV === "production" ? "error" : "warn",
-			
-			// Enforce consistent unused variable handling
-			"no-unused-vars": "off", // Disable base rule in favor of TypeScript rule
+			// Strict rules in production
+			"no-console": isProduction ? "error" : "warn",
+			"no-debugger": isProduction ? "error" : "warn",
+
+			// Additional production-focused rules
+			"no-unused-expressions": isProduction ? "error" : "warn",
+			"no-unreachable": isProduction ? "error" : "warn",
+			"no-warning-comments": isProduction
+				? [
+						"error",
+						{
+							terms: ["todo", "fixme", "xxx"],
+							location: "start",
+						},
+					]
+				: "off",
 		},
 
 		// Ignore specific files
