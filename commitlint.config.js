@@ -10,28 +10,29 @@ module.exports = {
 			["build", "chore", "ci", "docs", "feat", "fix", "perf", "refactor", "revert", "style", "test"],
 		],
 		"scope-enum": async () => {
-			const branch = shell.exec("git rev-parse --abbrev-ref HEAD", { silent: true }).stdout.trim();
+			const branch = shell.exec("git rev-parse --abbrev-ref HEAD", { silent: true }).stdout.trim().toUpperCase();
 
 			return [
 				2,
 				"always",
 				[
 					branch,
-					"core",
-					"api",
-					"ui",
-					"db",
-					"config",
-					"auth",
-					"search",
-					"checkout",
-					"ci",
-					"build",
-					"eslint",
-					"prettier",
+					"CORE",
+					"API",
+					"UI",
+					"DB",
+					"CONFIG",
+					"AUTH",
+					"SEARCH",
+					"CHECKOUT",
+					"CI",
+					"BUILD",
+					"ESLINT",
+					"PRETTIER",
 				],
 			];
 		},
+		"scope-empty": [2, "never"],
 		"scope-case": [2, "always", "upper-case"],
 	},
 };
