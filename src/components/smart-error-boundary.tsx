@@ -48,7 +48,7 @@ type SmartErrorBoundaryProps = {
 };
 
 // Default error fallback component
-const DefaultErrorFallback: React.FC<DefaultErrorFallbackProps> = ({
+const DefaultErrorFallback = ({
 	error,
 	resetErrorBoundary,
 	retryCount,
@@ -56,15 +56,15 @@ const DefaultErrorFallback: React.FC<DefaultErrorFallbackProps> = ({
 	context,
 	level,
 	enableNavigation,
-}) => {
+}: DefaultErrorFallbackProps) => {
 	const router = useRouter();
 	const canRetry = retryCount < maxRetries;
 
 	return (
-		<div className="error-boundary rounded-lg border border-red-200 bg-red-50 p-6">
+		<div className="bg-red-50 p-6 border border-red-200 rounded-lg error-boundary">
 			<div className="flex items-center">
 				<div className="flex-shrink-0">
-					<svg className="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+					<svg className="w-5 h-5 text-red-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
 						<path
 							fillRule="evenodd"
 							d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
@@ -73,8 +73,8 @@ const DefaultErrorFallback: React.FC<DefaultErrorFallbackProps> = ({
 					</svg>
 				</div>
 				<div className="ml-3">
-					<h3 className="text-sm font-medium text-red-800">Something went wrong in {context}</h3>
-					<div className="mt-2 text-sm text-red-700">
+					<h3 className="font-medium text-red-800 text-sm">Something went wrong in {context}</h3>
+					<div className="mt-2 text-red-700 text-sm">
 						<p>{error.message}</p>
 						{process.env.NODE_ENV === "development" && (
 							<details className="mt-2">
@@ -83,12 +83,12 @@ const DefaultErrorFallback: React.FC<DefaultErrorFallbackProps> = ({
 							</details>
 						)}
 					</div>
-					<div className="mt-4 space-x-2">
+					<div className="space-x-2 mt-4">
 						{canRetry && (
 							<button
 								type="button"
 								onClick={resetErrorBoundary}
-								className="rounded bg-red-100 px-3 py-2 text-sm font-medium text-red-800 transition-colors hover:bg-red-200"
+								className="bg-red-100 hover:bg-red-200 px-3 py-2 rounded font-medium text-red-800 text-sm transition-colors"
 							>
 								Try Again ({maxRetries - retryCount} attempts left)
 							</button>
@@ -99,7 +99,7 @@ const DefaultErrorFallback: React.FC<DefaultErrorFallbackProps> = ({
 							<button
 								type="button"
 								onClick={() => router.refresh()}
-								className="rounded bg-gray-100 px-3 py-2 text-sm font-medium text-gray-800 transition-colors hover:bg-gray-200"
+								className="bg-gray-100 hover:bg-gray-200 px-3 py-2 rounded font-medium text-gray-800 text-sm transition-colors"
 							>
 								Refresh Page
 							</button>
@@ -109,7 +109,7 @@ const DefaultErrorFallback: React.FC<DefaultErrorFallbackProps> = ({
 							<button
 								type="button"
 								onClick={() => router.back()}
-								className="rounded bg-blue-100 px-3 py-2 text-sm font-medium text-blue-800 transition-colors hover:bg-blue-200"
+								className="bg-blue-100 hover:bg-blue-200 px-3 py-2 rounded font-medium text-blue-800 text-sm transition-colors"
 							>
 								Go Back
 							</button>
@@ -119,7 +119,7 @@ const DefaultErrorFallback: React.FC<DefaultErrorFallbackProps> = ({
 							<button
 								type="button"
 								onClick={() => window.location.reload()}
-								className="rounded bg-blue-100 px-3 py-2 text-sm font-medium text-blue-800 transition-colors hover:bg-blue-200"
+								className="bg-blue-100 hover:bg-blue-200 px-3 py-2 rounded font-medium text-blue-800 text-sm transition-colors"
 							>
 								Reload Application
 							</button>
@@ -129,7 +129,7 @@ const DefaultErrorFallback: React.FC<DefaultErrorFallbackProps> = ({
 							<button
 								type="button"
 								onClick={() => router.push("/")}
-								className="rounded bg-green-100 px-3 py-2 text-sm font-medium text-green-800 transition-colors hover:bg-green-200"
+								className="bg-green-100 hover:bg-green-200 px-3 py-2 rounded font-medium text-green-800 text-sm transition-colors"
 							>
 								Go Home
 							</button>
@@ -142,7 +142,7 @@ const DefaultErrorFallback: React.FC<DefaultErrorFallbackProps> = ({
 };
 
 // Main SmartErrorBoundary component
-const SmartErrorBoundary: React.FC<SmartErrorBoundaryProps> = ({
+const SmartErrorBoundary = ({
 	children,
 	fallback,
 	onError,
@@ -153,7 +153,7 @@ const SmartErrorBoundary: React.FC<SmartErrorBoundaryProps> = ({
 	resetKeys = [],
 	enableNavigation = false, // Default to false
 	className,
-}) => {
+}: SmartErrorBoundaryProps) => {
 	const [retryCount, setRetryCount] = useState<number>(0);
 
 	const handleError = (error: Error, errorInfo: ErrorInfo): void => {
