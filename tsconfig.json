@@ -1,7 +1,11 @@
 {
 	"compilerOptions": {
 		"target": "ES2017",
-		"lib": ["dom", "dom.iterable", "esnext"],
+		"lib": [
+			"dom",
+			"dom.iterable",
+			"esnext"
+		],
 		"allowJs": true,
 		"skipLibCheck": true,
 		"strict": true,
@@ -16,12 +20,29 @@
 		"plugins": [
 			{
 				"name": "next"
+			},
+			{
+				"name": "typescript-plugin-css-modules",
+				"options": {
+					"classnameTransform": "camelCase",
+					"customMatcher": "\\.module\\.(c|le|sc|sa)ss$"
+				}
 			}
 		],
 		"paths": {
-			"@/*": ["./src/*"]
+			"@/*": [
+				"./src/*"
+			]
 		}
 	},
-	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "eslint.config.mjs"],
-	"exclude": ["node_modules"]
+	"include": [
+		"next-env.d.ts",
+		"**/*.ts",
+		"**/*.tsx",
+		".next/types/**/*.ts",
+		"eslint.config.mjs"
+	],
+	"exclude": [
+		"node_modules"
+	]
 }

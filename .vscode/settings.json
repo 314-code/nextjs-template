@@ -4,7 +4,12 @@
 		"source.fixAll.eslint": "always",
 		"source.organizeImports": "explicit"
 	},
-	"eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
+	"eslint.validate": [
+		"javascript",
+		"javascriptreact",
+		"typescript",
+		"typescriptreact"
+	],
 	"eslint.rules.customizations": [
 		{
 			"rule": "@typescript-eslint/no-unused-vars",
@@ -13,6 +18,9 @@
 	],
 	"editor.detectIndentation": true,
 	"typescript.tsdk": "node_modules/typescript/lib",
+	"typescript.preferences.includePackageJsonAutoImports": "off",
+	"typescript.suggest.autoImports": true,
+	"typescript.preferences.includeInlayParameterNameHints": "all",
 	"editor.defaultFormatter": "esbenp.prettier-vscode",
 	"[javascript]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -25,5 +33,14 @@
 	},
 	"[typescriptreact]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
-	}
+	},
+	"[css]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[scss]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"css.validate": true,
+	"scss.validate": true,
+	"css.lint.unknownAtRules": "ignore"
 }
