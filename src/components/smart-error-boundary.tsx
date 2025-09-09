@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { ComponentType, ErrorInfo, ReactNode, useState } from "react";
 import { ErrorBoundary, FallbackProps } from "react-error-boundary";
+import styles from "./smart-error-boundary.module.css";
 
 // Extended error context for logging
 type ErrorContext = {
@@ -18,7 +19,7 @@ type CustomErrorFallbackProps = FallbackProps & {
 	maxRetries: number;
 	context: string;
 	level: "component" | "page" | "app";
-	enableNavigation: boolean; // Add this to the fallback props too
+	enableNavigation: boolean;
 };
 
 // Error handler function type - using React's ErrorInfo
@@ -48,7 +49,7 @@ type SmartErrorBoundaryProps = {
 };
 
 // Default error fallback component
-const DefaultErrorFallback = ({
+const DefaultErrorFallback: React.FC<DefaultErrorFallbackProps> = ({
 	error,
 	resetErrorBoundary,
 	retryCount,
@@ -56,15 +57,15 @@ const DefaultErrorFallback = ({
 	context,
 	level,
 	enableNavigation,
-}: DefaultErrorFallbackProps) => {
+}) => {
 	const router = useRouter();
 	const canRetry = retryCount < maxRetries;
 
 	return (
-		<div className="bg-red-50 p-6 border border-red-200 rounded-lg error-boundary">
-			<div className="flex items-center">
-				<div className="flex-shrink-0">
-					<svg className="w-5 h-5 text-red-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+		<div className={styles.errorBoundary}>
+			<div className={styles.errorContent}>
+				<div className={styles.iconContainer}>
+					<svg className={styles.errorIcon} viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
 						<path
 							fillRule="evenodd"
 							d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
@@ -72,23 +73,23 @@ const DefaultErrorFallback = ({
 						/>
 					</svg>
 				</div>
-				<div className="ml-3">
-					<h3 className="font-medium text-red-800 text-sm">Something went wrong in {context}</h3>
-					<div className="mt-2 text-red-700 text-sm">
+				<div className={styles.errorDetails}>
+					<h3 className={styles.errorTitle}>Something went wrong in {context}</h3>
+					<div className={styles.errorMessage}>
 						<p>{error.message}</p>
 						{process.env.NODE_ENV === "development" && (
-							<details className="mt-2">
-								<summary className="cursor-pointer">Error details</summary>
-								<pre className="mt-1 text-xs whitespace-pre-wrap">{error.stack}</pre>
+							<details className={styles.errorDetailsToggle}>
+								<summary className={styles.errorDetailsSummary}>Error details</summary>
+								<pre className={styles.errorStack}>{error.stack}</pre>
 							</details>
 						)}
 					</div>
-					<div className="space-x-2 mt-4">
+					<div className={styles.buttonGroup}>
 						{canRetry && (
 							<button
 								type="button"
 								onClick={resetErrorBoundary}
-								className="bg-red-100 hover:bg-red-200 px-3 py-2 rounded font-medium text-red-800 text-sm transition-colors"
+								className={`${styles.button} ${styles.retryButton}`}
 							>
 								Try Again ({maxRetries - retryCount} attempts left)
 							</button>
@@ -99,7 +100,7 @@ const DefaultErrorFallback = ({
 							<button
 								type="button"
 								onClick={() => router.refresh()}
-								className="bg-gray-100 hover:bg-gray-200 px-3 py-2 rounded font-medium text-gray-800 text-sm transition-colors"
+								className={`${styles.button} ${styles.refreshButton}`}
 							>
 								Refresh Page
 							</button>
@@ -109,7 +110,7 @@ const DefaultErrorFallback = ({
 							<button
 								type="button"
 								onClick={() => router.back()}
-								className="bg-blue-100 hover:bg-blue-200 px-3 py-2 rounded font-medium text-blue-800 text-sm transition-colors"
+								className={`${styles.button} ${styles.backButton}`}
 							>
 								Go Back
 							</button>
@@ -119,7 +120,7 @@ const DefaultErrorFallback = ({
 							<button
 								type="button"
 								onClick={() => window.location.reload()}
-								className="bg-blue-100 hover:bg-blue-200 px-3 py-2 rounded font-medium text-blue-800 text-sm transition-colors"
+								className={`${styles.button} ${styles.reloadButton}`}
 							>
 								Reload Application
 							</button>
@@ -129,7 +130,7 @@ const DefaultErrorFallback = ({
 							<button
 								type="button"
 								onClick={() => router.push("/")}
-								className="bg-green-100 hover:bg-green-200 px-3 py-2 rounded font-medium text-green-800 text-sm transition-colors"
+								className={`${styles.button} ${styles.homeButton}`}
 							>
 								Go Home
 							</button>
@@ -142,7 +143,7 @@ const DefaultErrorFallback = ({
 };
 
 // Main SmartErrorBoundary component
-const SmartErrorBoundary = ({
+const SmartErrorBoundary: React.FC<SmartErrorBoundaryProps> = ({
 	children,
 	fallback,
 	onError,
@@ -151,9 +152,9 @@ const SmartErrorBoundary = ({
 	level = "component",
 	maxRetries = 3,
 	resetKeys = [],
-	enableNavigation = false, // Default to false
+	enableNavigation = false,
 	className,
-}: SmartErrorBoundaryProps) => {
+}) => {
 	const [retryCount, setRetryCount] = useState<number>(0);
 
 	const handleError = (error: Error, errorInfo: ErrorInfo): void => {
@@ -215,7 +216,7 @@ const SmartErrorBoundary = ({
 			maxRetries={maxRetries}
 			context={context}
 			level={level}
-			enableNavigation={enableNavigation} // Pass the prop to the fallback component
+			enableNavigation={enableNavigation}
 		/>
 	);
 

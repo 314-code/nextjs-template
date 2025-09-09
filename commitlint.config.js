@@ -32,7 +32,7 @@ module.exports = {
 				],
 			];
 		},
-		"scope-empty": [2, "never"],
+		"scope-empty": [1, "never"],
 		"scope-case": [2, "always", "upper-case"],
 	},
 };
