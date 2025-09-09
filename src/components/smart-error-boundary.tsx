@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { ComponentType, ErrorInfo, ReactNode, useState } from "react";
 import { ErrorBoundary, FallbackProps } from "react-error-boundary";
-import styles from './smart-error-boundary.module.css';
+import styles from "./smart-error-boundary.module.css";
 
 // Extended error context for logging
 type ErrorContext = {
