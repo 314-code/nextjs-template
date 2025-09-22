@@ -1,0 +1,25 @@
+'use client';
+
+import React, { useState } from 'react';
+
+{{PROPS_TYPE_DEFINITION}}
+
+const {{COMPONENT_NAME}} = ({{PROPS_DESTRUCTURING}}{{PROPS_TYPE}}) => {
+  const [count, setCount] = useState(0);
+
+  return (
+    <div className="{{FILE_NAME}}">
+      <h1>{{COMPONENT_NAME}} Component</h1>
+      <p>This is a client-side component.</p>
+      <div>
+        <p>Count: {count}</p>
+        <button onClick={() => setCount(count + 1)}>
+          Increment
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default {{COMPONENT_NAME}};
+export type { {{COMPONENT_NAME}}Props };
