@@ -1,3 +1,4 @@
+#!/usr/bin/env tsx
 /* eslint-disable no-console */
 
 import chalk from "chalk";
@@ -148,30 +149,31 @@ function generateComponent(name: string, options: GeneratorOptions): void {
 		propsDestructuring = "props";
 	}
 
-	// Replace template placeholders
+	// Replace template placeholders (but handle className separately)
 	template = template
 		.replace(/{{COMPONENT_NAME}}/g, componentName)
 		.replace(/{{PROPS_TYPE_DEFINITION}}/g, propsTypeDefinition)
 		.replace(/{{PROPS_DESTRUCTURING}}/g, propsDestructuring)
-		.replace(/{{PROPS_TYPE}}/g, propsType)
-		.replace(/{{FILE_NAME}}/g, fileName);
+		.replace(/{{PROPS_TYPE}}/g, propsType);
 
-	// Handle styles
+	// Handle styles and className conditionally
 	if (options.styles) {
-		// Add CSS module import
+		// Add CSS module import when styles flag is set
 		const importLine = `import styles from './${fileName}.module.css';`;
 
 		if (isClient) {
+			// For client components, add import after React import
 			template = template.replace(/(import React, { useState } from 'react';)/, `$1\n${importLine}`);
 		} else {
-			template = template.replace(/(import React from 'react';)/, `$1\n${importLine}`);
+			// For server components, add import at the top
+			template = `${importLine}\n\n${template}`;
 		}
 
-		// Update className to use CSS modules
+		// Replace the className placeholder with CSS modules
 		template = template.replace(/className="{{FILE_NAME}}"/g, `className={styles.container}`);
 	} else {
-		// Use regular className
-		template = template.replace(/className="{{FILE_NAME}}"/g, `className="${fileName}"`);
+		// Replace the className placeholder with regular string className
+		template = template.replace(/className="{{FILE_NAME}}"/g, `className="container"`);
 	}
 
 	// Write component file
@@ -179,7 +181,7 @@ function generateComponent(name: string, options: GeneratorOptions): void {
 	fs.writeFileSync(componentPath, template);
 	console.log(chalk.green(`✅ Created component: ${componentPath}`));
 
-	// Generate styles if requested
+	// Generate styles file only if requested
 	if (options.styles) {
 		const stylesTemplate = loadTemplate("styles.module");
 		const stylesContent = stylesTemplate.replace(/{{COMPONENT_NAME}}/g, fileName);

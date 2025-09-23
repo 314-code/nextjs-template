@@ -1,5 +1,3 @@
-import React from 'react';
-
 {{PROPS_TYPE_DEFINITION}}
 
 const {{COMPONENT_NAME}} = ({{PROPS_DESTRUCTURING}}{{PROPS_TYPE}}) => {
