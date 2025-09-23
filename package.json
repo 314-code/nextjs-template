@@ -18,8 +18,8 @@
 	},
 	"lint-staged": {
 		"**/*.{js,jsx,ts,tsx}": [
-			"next lint --fix",
-			"prettier --write ."
+			"eslint --fix",
+			"prettier --write"
 		]
 	},
 	"dependencies": {
