@@ -3,7 +3,7 @@
  * Helps ensure CSS module class names exist at compile time and runtime
  */
 export function createClassSelector<T extends Record<string, string>>(styles: T) {
-	return function (className: keyof T, additionalClasses?: string): string {
+	return (className: keyof T, additionalClasses?: string): string => {
 		// Runtime validation in development
 		if (process.env.NODE_ENV === "development") {
 			if (!styles[className]) {
@@ -27,7 +27,7 @@ export function createClassSelector<T extends Record<string, string>>(styles: T)
  * Alternative strict version that throws in development for non-existent classes
  */
 export function createStrictClassSelector<T extends Record<string, string>>(styles: T) {
-	return function (className: keyof T, additionalClasses?: string): string {
+	return (className: keyof T, additionalClasses?: string): string => {
 		if (process.env.NODE_ENV === "development" && !styles[className]) {
 			throw new Error(
 				`CSS class '${String(className)}' not found in module. Available classes: ${Object.keys(styles).join(", ")}`

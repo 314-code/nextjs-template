@@ -1,8 +1,8 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { ComponentType, ErrorInfo, ReactNode, useState } from "react";
-import { ErrorBoundary, FallbackProps } from "react-error-boundary";
+import { type ComponentType, type ErrorInfo, type ReactNode, useState } from "react";
+import { ErrorBoundary, type FallbackProps } from "react-error-boundary";
 import styles from "./smart-error-boundary.module.css";
 
 // Extended error context for logging
@@ -65,11 +65,11 @@ const DefaultErrorFallback: React.FC<DefaultErrorFallbackProps> = ({
 		<div className={styles.errorBoundary}>
 			<div className={styles.errorContent}>
 				<div className={styles.iconContainer}>
-					<svg className={styles.errorIcon} viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+					<svg aria-hidden="true" className={styles.errorIcon} fill="currentColor" viewBox="0 0 20 20">
 						<path
-							fillRule="evenodd"
-							d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
 							clipRule="evenodd"
+							d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+							fillRule="evenodd"
 						/>
 					</svg>
 				</div>
@@ -86,11 +86,7 @@ const DefaultErrorFallback: React.FC<DefaultErrorFallbackProps> = ({
 					</div>
 					<div className={styles.buttonGroup}>
 						{canRetry && (
-							<button
-								type="button"
-								onClick={resetErrorBoundary}
-								className={`${styles.button} ${styles.retryButton}`}
-							>
+							<button className={`${styles.button} ${styles.retryButton}`} onClick={resetErrorBoundary} type="button">
 								Try Again ({maxRetries - retryCount} attempts left)
 							</button>
 						)}
@@ -98,29 +94,25 @@ const DefaultErrorFallback: React.FC<DefaultErrorFallbackProps> = ({
 						{/* Navigation buttons only shown when enableNavigation is true */}
 						{enableNavigation && level === "page" && (
 							<button
-								type="button"
-								onClick={() => router.refresh()}
 								className={`${styles.button} ${styles.refreshButton}`}
+								onClick={() => router.refresh()}
+								type="button"
 							>
 								Refresh Page
 							</button>
 						)}
 
 						{enableNavigation && level === "page" && (
-							<button
-								type="button"
-								onClick={() => router.back()}
-								className={`${styles.button} ${styles.backButton}`}
-							>
+							<button className={`${styles.button} ${styles.backButton}`} onClick={() => router.back()} type="button">
 								Go Back
 							</button>
 						)}
 
 						{enableNavigation && level === "app" && (
 							<button
-								type="button"
-								onClick={() => window.location.reload()}
 								className={`${styles.button} ${styles.reloadButton}`}
+								onClick={() => window.location.reload()}
+								type="button"
 							>
 								Reload Application
 							</button>
@@ -128,9 +120,9 @@ const DefaultErrorFallback: React.FC<DefaultErrorFallbackProps> = ({
 
 						{enableNavigation && level === "app" && (
 							<button
-								type="button"
-								onClick={() => router.push("/")}
 								className={`${styles.button} ${styles.homeButton}`}
+								onClick={() => router.push("/")}
+								type="button"
 							>
 								Go Home
 							</button>
@@ -210,13 +202,13 @@ const SmartErrorBoundary: React.FC<SmartErrorBoundaryProps> = ({
 	// Enhance fallback props with additional context
 	const enhancedFallback = ({ error, resetErrorBoundary }: FallbackProps) => (
 		<FallbackComponent
+			context={context}
+			enableNavigation={enableNavigation}
 			error={error}
+			level={level}
+			maxRetries={maxRetries}
 			resetErrorBoundary={resetErrorBoundary}
 			retryCount={retryCount}
-			maxRetries={maxRetries}
-			context={context}
-			level={level}
-			enableNavigation={enableNavigation}
 		/>
 	);
 
