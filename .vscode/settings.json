@@ -1,40 +1,38 @@
 {
-	// "editor.formatOnSave": true,
+	"editor.formatOnSave": true,
+	"editor.defaultFormatter": "biomejs.biome",
 	"editor.codeActionsOnSave": {
-		"source.fixAll.eslint": "always",
-		"source.organizeImports": "explicit"
+		"source.fixAll.biome": "explicit",
+		"source.organizeImports.biome": "explicit"
 	},
-	"eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
-	"eslint.rules.customizations": [
-		{
-			"rule": "@typescript-eslint/no-unused-vars",
-			"severity": "warn"
-		}
-	],
-	"editor.detectIndentation": true,
-	"typescript.tsdk": "node_modules/typescript/lib",
-	"typescript.preferences.includePackageJsonAutoImports": "off",
-	"typescript.suggest.autoImports": true,
-	"typescript.preferences.includeInlayParameterNameHints": "all",
-	"editor.defaultFormatter": "esbenp.prettier-vscode",
 	"[javascript]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode"
+		"editor.defaultFormatter": "biomejs.biome"
 	},
 	"[typescript]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode"
+		"editor.defaultFormatter": "biomejs.biome"
 	},
 	"[javascriptreact]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode"
+		"editor.defaultFormatter": "biomejs.biome"
 	},
 	"[typescriptreact]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode"
+		"editor.defaultFormatter": "biomejs.biome"
 	},
+	"[json]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[jsonc]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	// Keep Prettier only for CSS/SCSS if Biome doesn't support them well
 	"[css]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode"
+		"editor.defaultFormatter": "biomejs.biome"
 	},
 	"[scss]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode"
+		"editor.defaultFormatter": "biomejs.biome"
 	},
+	"eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
+	"editor.detectIndentation": true,
+	"typescript.tsdk": "node_modules/typescript/lib",
 	"css.validate": true,
 	"scss.validate": true,
 	"css.lint.unknownAtRules": "ignore"

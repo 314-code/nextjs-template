@@ -1,8 +1,8 @@
 .errorBoundary {
-	border-radius: var(--radius-lg);
-	border: 1px solid #fecaca; /* red-200 */
-	background-color: #fef2f2; /* red-50 */
 	padding: var(--spacing-xl);
+	background-color: #fef2f2; /* red-50 */
+	border: 1px solid #fecaca; /* red-200 */
+	border-radius: var(--radius-lg);
 }
 
 .errorContent {
@@ -15,8 +15,8 @@
 }
 
 .errorIcon {
-	height: 1.25rem;
 	width: 1.25rem;
+	height: 1.25rem;
 	color: #f87171; /* red-400 */
 }
 
@@ -25,10 +25,10 @@
 }
 
 .errorTitle {
+	margin: 0;
 	font-size: var(--font-size-sm);
 	font-weight: var(--font-weight-medium);
-	color: #991b1b; /* red-800 */
-	margin: 0;
+	color: #991b1b;
 }
 
 .errorMessage {
@@ -42,37 +42,37 @@
 }
 
 .errorDetailsSummary {
-	cursor: pointer;
 	font-weight: var(--font-weight-medium);
+	cursor: pointer;
 }
 
 .errorStack {
 	margin-top: var(--spacing-xs);
+	font-family: "Geist Mono", monospace;
 	font-size: var(--font-size-xs);
 	white-space: pre-wrap;
-	font-family: "Geist Mono", monospace;
 }
 
 .buttonGroup {
-	margin-top: var(--spacing-md);
 	display: flex;
-	gap: var(--spacing-sm);
 	flex-wrap: wrap;
+	gap: var(--spacing-sm);
+	margin-top: var(--spacing-md);
 }
 
 .button {
-	border-radius: var(--radius-md);
 	padding: var(--spacing-sm) var(--spacing-sm);
 	font-size: var(--font-size-sm);
 	font-weight: var(--font-weight-medium);
-	transition: background-color 0.2s ease;
 	cursor: pointer;
 	border: none;
+	border-radius: var(--radius-md);
+	transition: background-color 0.2s ease;
 }
 
 .retryButton {
-	background-color: #fee2e2; /* red-100 */
 	color: #991b1b; /* red-800 */
+	background-color: #fee2e2; /* red-800 */
 }
 
 .retryButton:hover {
@@ -81,8 +81,8 @@
 
 .refreshButton,
 .reloadButton {
-	background-color: #f3f4f6; /* gray-100 */
 	color: #374151; /* gray-800 */
+	background-color: #f3f4f6; /* gray-800 */
 }
 
 .refreshButton:hover,
@@ -91,8 +91,8 @@
 }
 
 .backButton {
-	background-color: #dbeafe; /* blue-100 */
 	color: #1e40af; /* blue-800 */
+	background-color: #dbeafe; /* blue-800 */
 }
 
 .backButton:hover {
@@ -100,8 +100,8 @@
 }
 
 .homeButton {
-	background-color: #dcfce7; /* green-100 */
 	color: #166534; /* green-800 */
+	background-color: #dcfce7; /* green-800 */
 }
 
 .homeButton:hover {
@@ -111,8 +111,8 @@
 /* Dark mode support */
 @media (prefers-color-scheme: dark) {
 	.errorBoundary {
-		border-color: #7f1d1d; /* red-900 */
 		background-color: #450a0a; /* red-950 */
+		border-color: #7f1d1d; /* red-950 */
 	}
 
 	.errorIcon {
@@ -128,8 +128,8 @@
 	}
 
 	.retryButton {
-		background-color: #7f1d1d; /* red-900 */
 		color: #fca5a5; /* red-300 */
+		background-color: #7f1d1d; /* red-300 */
 	}
 
 	.retryButton:hover {
@@ -138,8 +138,8 @@
 
 	.refreshButton,
 	.reloadButton {
-		background-color: #374151; /* gray-700 */
 		color: #d1d5db; /* gray-300 */
+		background-color: #374151; /* gray-300 */
 	}
 
 	.refreshButton:hover,
@@ -148,8 +148,8 @@
 	}
 
 	.backButton {
-		background-color: #1e3a8a; /* blue-900 */
 		color: #93c5fd; /* blue-300 */
+		background-color: #1e3a8a; /* blue-300 */
 	}
 
 	.backButton:hover {
@@ -157,8 +157,8 @@
 	}
 
 	.homeButton {
-		background-color: #14532d; /* green-900 */
 		color: #86efac; /* green-300 */
+		background-color: #14532d; /* green-300 */
 	}
 
 	.homeButton:hover {

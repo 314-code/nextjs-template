@@ -1,10 +1,11 @@
 #!/usr/bin/env tsx
+
 /* eslint-disable no-console */
 
+import fs from "node:fs";
+import path from "node:path";
 import chalk from "chalk";
 import { Command } from "commander";
-import fs from "fs";
-import path from "path";
 
 interface GeneratorOptions {
 	client?: boolean;
@@ -132,9 +133,7 @@ function generateComponent(name: string, options: GeneratorOptions): void {
 		if (props.length > 0) {
 			// Generate TypeScript type
 			propsTypeDefinition =
-				`type ${componentName}Props = {\n` +
-				props.map((prop) => `  ${prop.name}: ${prop.type};`).join("\n") +
-				"\n};";
+				`type ${componentName}Props = {\n` + props.map((prop) => `  ${prop.name}: ${prop.type};`).join("\n") + "\n};";
 
 			// Generate props destructuring
 			propsDestructuring = `{ ${props.map((prop) => prop.name).join(", ")} }`;
@@ -200,9 +199,7 @@ function generateComponent(name: string, options: GeneratorOptions): void {
 	console.log(chalk.gray(`\nFiles created:`));
 	console.log(chalk.green(`  ✓ ${path.relative(process.cwd(), componentPath)}`));
 	if (options.styles) {
-		console.log(
-			chalk.green(`  ✓ ${path.relative(process.cwd(), path.join(componentDir, `${fileName}.module.css`))}`)
-		);
+		console.log(chalk.green(`  ✓ ${path.relative(process.cwd(), path.join(componentDir, `${fileName}.module.css`))}`));
 	}
 	console.log(chalk.green(`  ✓ ${path.relative(process.cwd(), indexPath)}`));
 
