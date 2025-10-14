@@ -132,8 +132,7 @@ function generateComponent(name: string, options: GeneratorOptions): void {
 
 		if (props.length > 0) {
 			// Generate TypeScript type
-			propsTypeDefinition =
-				`type ${componentName}Props = {\n` + props.map((prop) => `  ${prop.name}: ${prop.type};`).join("\n") + "\n};";
+			propsTypeDefinition = `type ${componentName}Props = {\n${props.map((prop) => `  ${prop.name}: ${prop.type};`).join("\n")}\n};`;
 
 			// Generate props destructuring
 			propsDestructuring = `{ ${props.map((prop) => prop.name).join(", ")} }`;
@@ -219,16 +218,19 @@ function generateComponent(name: string, options: GeneratorOptions): void {
 // CLI setup
 program
 	.name("generate-component")
-	.description("Generate Next.js components with templates (server components by default)")
+	.description(`Generate Next.js components with templates ${chalk.yellowBright("(server components by default)")}`)
 	.version("1.0.0");
 
 program
 	.argument("<n>", "Component name")
-	.option("-c, --client", "Generate client component (default: server component)")
+	.option("-c, --client", `Generate client component (default: ${chalk.blueBright("server component")})`)
 	.option("-s, --styles", "Generate CSS module file")
-	.option("-p, --props <props>", "Component props (format: 'name: string; age: number')")
-	.option("-d, --directory <path>", "Target directory relative to /src (default: components)")
-	.option("-f, --force", "Force overwrite existing component")
+	.option("-p, --props <props>", `Component props (format: ${chalk.blueBright("name: string; age: number")})`)
+	.option(
+		"-d, --directory <path>",
+		`Target directory relative to ${chalk.yellowBright("/src")} (default: ${chalk.blueBright("components")})`
+	)
+	.option("-f, --force", `Force ${chalk.redBright("overwrite")} existing component`)
 	.action((name: string, options: GeneratorOptions) => {
 		generateComponent(name, options);
 	});

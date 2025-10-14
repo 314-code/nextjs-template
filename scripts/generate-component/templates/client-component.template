@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 {{PROPS_TYPE_DEFINITION}}
 
@@ -13,7 +13,7 @@ const {{COMPONENT_NAME}} = ({{PROPS_DESTRUCTURING}}{{PROPS_TYPE}}) => {
       <p>This is a client-side component.</p>
       <div>
         <p>Count: {count}</p>
-        <button onClick={() => setCount(count + 1)}>
+        <button onClick={() => setCount(count + 1)} type="button">
           Increment
         </button>
       </div>
