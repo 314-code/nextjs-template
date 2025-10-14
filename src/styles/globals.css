@@ -3,8 +3,8 @@
 *::before,
 *::after {
 	box-sizing: border-box;
-	margin: 0;
 	padding: 0;
+	margin: 0;
 }
 
 html {
@@ -13,22 +13,12 @@ html {
 }
 
 body {
+	margin: 0;
 	font-family:
-		"Geist Sans",
-		-apple-system,
-		BlinkMacSystemFont,
-		"Segoe UI",
-		"Roboto",
-		"Oxygen",
-		"Ubuntu",
-		"Cantarell",
-		"Fira Sans",
-		"Droid Sans",
-		"Helvetica Neue",
-		sans-serif;
+		"Geist Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+		"Droid Sans", "Helvetica Neue", sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	margin: 0;
 	line-height: 1.6;
 	color: var(--color-text-primary);
 	background-color: var(--color-main);
@@ -36,6 +26,11 @@ body {
 
 /* CSS Custom Properties */
 :root {
+	--color-base: #3396d3;
+	--color-base-lighter: oklch(from var(--color-base) clamp(0, l + 0.22, 1) calc(c * 0.9) h);
+	--color-base-darker: oklch(from var(--color-base) clamp(0, l - 0.22, 1) calc(c * 0.92) h);
+	--color-base-complement: hsl(from var(--color-base) calc(h - 180) s l);
+
 	/* Brand Colors */
 	--color-primary: hsl(356, 80%, 52%);
 	--color-secondary: hsl(240, 50%, 26%);
@@ -110,6 +105,14 @@ body {
 	--font-weight-medium: 500;
 	--font-weight-semibold: 600;
 	--font-weight-bold: 700;
+
+	color-scheme: light dark;
+}
+
+@property --gradient-percentage {
+	syntax: "<percentage>";
+	inherits: false;
+	initial-value: 45%;
 }
 
 /* Dark mode support */
@@ -126,6 +129,8 @@ body {
 	}
 }
 
+/* ::target-text {} */
+
 /* Basic typography */
 h1,
 h2,
@@ -135,7 +140,15 @@ h5,
 h6 {
 	margin: 0;
 	font-weight: var(--font-weight-semibold);
+	/* color: var(--base-color); */
 	line-height: 1.25;
+	color: light-dark(red, blue);
+
+	background-image: linear-gradient(45deg, #fa0 var(--gradient-percentage), #f0a);
+}
+
+div {
+	color: var(--base-color);
 }
 
 h1 {
@@ -175,12 +188,12 @@ a:hover {
 
 /* Buttons reset */
 button {
-	border: none;
-	background: none;
 	padding: 0;
 	margin: 0;
 	font: inherit;
 	cursor: pointer;
+	background: none;
+	border: none;
 }
 
 /* Form elements */
@@ -199,16 +212,16 @@ select {
 	padding: 0;
 	margin: -1px;
 	overflow: hidden;
-	clip: rect(0, 0, 0, 0);
 	white-space: nowrap;
 	border: 0;
+	clip: rect(0, 0, 0, 0);
 }
 
 .container {
 	width: 100%;
 	max-width: 1200px;
-	margin: 0 auto;
 	padding: 0 var(--spacing-md);
+	margin: 0 auto;
 }
 
 @media (min-width: 768px) {
