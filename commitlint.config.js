@@ -17,7 +17,20 @@ module.exports = {
 			return [
 				2,
 				"always",
-				[branchScope, "CORE", "API", "UI", "DB", "CONFIG", "AUTH", "SEARCH", "CHECKOUT", "CI", "BUILD"],
+				[
+					branchScope,
+					"CORE",
+					"API",
+					"UI",
+					"DB",
+					"CONFIG",
+					"AUTH",
+					"SEARCH",
+					"CHECKOUT",
+					"CI",
+					"BUILD",
+					"ACCESSIBILITY",
+				],
 			];
 		},
 		"scope-empty": [1, "never"],
