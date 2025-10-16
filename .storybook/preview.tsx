@@ -25,11 +25,11 @@ const preview: Preview = {
 			values: [
 				{
 					name: "light",
-					value: "#ffffff",
+					value: "#acb",
 				},
 				{
 					name: "dark",
-					value: "#1a1a1a",
+					value: "#f0a",
 				},
 			],
 		},
@@ -38,7 +38,9 @@ const preview: Preview = {
 		(Story) => (
 			<QueryClientProvider client={queryClient}>
 				<AnnouncementProvider>
-					<Story />
+					<div style={{ color: "#000" }}>
+						<Story />
+					</div>
 				</AnnouncementProvider>
 			</QueryClientProvider>
 		),
