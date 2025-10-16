@@ -46,10 +46,18 @@ function formatComponentName(name: string): string {
 
 // Utility to format file name (kebab-case)
 function formatFileName(name: string): string {
-	return name
-		.replace(/([A-Z])/g, "-$1")
-		.toLowerCase()
-		.replace(/^-/, "");
+	return (
+		name
+			// Insert hyphen before uppercase letters (except the first character)
+			.replace(/([a-z0-9])([A-Z])/g, "$1-$2")
+			// Handle consecutive capitals (e.g., "XMLParser" -> "xml-parser")
+			.replace(/([A-Z])([A-Z][a-z])/g, "$1-$2")
+			.toLowerCase()
+			// Clean up any duplicate hyphens
+			.replace(/-+/g, "-")
+			// Remove leading/trailing hyphens
+			.replace(/^-|-$/g, "")
+	);
 }
 
 // Parse props from the new format "name: string; age: number"
@@ -69,7 +77,7 @@ function parseProps(propsString: string): Array<{ name: string; type: string }> 
 // Generate component function
 function generateComponent(name: string, options: GeneratorOptions): void {
 	const componentName = formatComponentName(name);
-	const fileName = formatFileName(componentName);
+	const fileName = formatFileName(name);
 	const directoryName = name; // Use original name for directory (preserves case)
 
 	// Determine component type (server by default, client if flag is passed)
