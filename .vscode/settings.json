@@ -35,5 +35,6 @@
 	"typescript.tsdk": "node_modules/typescript/lib",
 	"css.validate": true,
 	"scss.validate": true,
-	"css.lint.unknownAtRules": "ignore"
+	"css.lint.unknownAtRules": "ignore",
+	"files.eol": "\n"
 }
