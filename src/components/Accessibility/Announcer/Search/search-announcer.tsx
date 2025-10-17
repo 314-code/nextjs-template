@@ -6,7 +6,7 @@ type StatusType = "loading" | "error" | "success";
 
 type SearchAnnouncerProps = {
 	query: string;
-	resultCount: number;
+	resultCount?: number;
 	status: StatusType;
 	totalTime?: number;
 };
