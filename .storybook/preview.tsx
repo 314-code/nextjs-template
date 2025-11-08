@@ -25,22 +25,53 @@ const preview: Preview = {
 			values: [
 				{
 					name: "light",
-					value: "#acb",
+					value: "hsl(0, 0%, 100%)",
+				},
+				{
+					name: "light-subtle",
+					value: "hsl(240, 25%, 97%)",
 				},
 				{
 					name: "dark",
-					value: "#f0a",
+					value: "hsl(0, 0%, 10%)",
+				},
+				{
+					name: "dark-subtle",
+					value: "hsl(0, 0%, 15%)",
 				},
 			],
+		},
+		viewport: {
+			viewports: {
+				mobile: {
+					name: "Mobile",
+					styles: {
+						width: "375px",
+						height: "667px",
+					},
+				},
+				tablet: {
+					name: "Tablet",
+					styles: {
+						width: "768px",
+						height: "1024px",
+					},
+				},
+				desktop: {
+					name: "Desktop",
+					styles: {
+						width: "1440px",
+						height: "900px",
+					},
+				},
+			},
 		},
 	},
 	decorators: [
 		(Story) => (
 			<QueryClientProvider client={queryClient}>
 				<AnnouncementProvider>
-					<div style={{ color: "#000" }}>
-						<Story />
-					</div>
+					<Story />
 				</AnnouncementProvider>
 			</QueryClientProvider>
 		),
