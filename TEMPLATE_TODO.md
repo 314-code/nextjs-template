@@ -96,3 +96,19 @@
 -   [ ] Vercel deployment configuration
 -   [ ] Health check API endpoint
 -   [ ] Production build optimization docs
+
+## 11. Accessibility & WCAG Compliance
+
+-   [ ] Skip to content/main navigation links
+-   [ ] useFocusTrap hook for modals/dialogs
+-   [ ] useFocusReturn hook
+-   [ ] useReducedMotion hook
+-   [ ] Focus-visible polyfill/styles (keyboard vs mouse)
+-   [ ] Color contrast audit (WCAG AA/AAA)
+-   [ ] Landmark navigation pattern
+-   [ ] Form validation live announcements
+-   [ ] Accessible disclosure widgets (tooltips, popovers)
+-   [ ] Keyboard shortcut system with customization
+-   [ ] High contrast mode support
+-   [ ] Screen reader testing documentation
+-   [ ] ARIA patterns documentation
