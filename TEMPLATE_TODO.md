@@ -2,8 +2,8 @@
 
 ## 1. Form Components & Validation
 
--   [ ] Input component (text, email, password, number, search variants)
--   [ ] Select component (native and custom dropdown)
+-   [x] Input component (text, email, password, number, search variants)
+-   [x] Select component (native and custom dropdown)
 -   [ ] Checkbox component with label
 -   [ ] Radio component with radio group
 -   [ ] Textarea component
