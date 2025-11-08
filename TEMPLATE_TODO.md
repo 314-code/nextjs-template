@@ -4,7 +4,7 @@
 
 -   [x] Input component (text, email, password, number, search variants)
 -   [x] Select component (native and custom dropdown)
--   [ ] Checkbox component with label
+-   [x] Checkbox component with label
 -   [ ] Radio component with radio group
 -   [ ] Textarea component
 -   [ ] React Hook Form integration
