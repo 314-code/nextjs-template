@@ -3,7 +3,7 @@
 import chalk from "chalk";
 import { createContext, type ReactNode, useCallback, useContext, useRef } from "react";
 
-type AnnouncementPriority = "polite" | "assertive";
+export type AnnouncementPriority = "polite" | "assertive";
 
 type AnnouncementContextType = {
 	announce: (message: string, priority?: AnnouncementPriority) => void;

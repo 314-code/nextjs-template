@@ -26,8 +26,8 @@
 
 ## 3. Feedback UI
 
--   [ ] Toast notification system
--   [ ] Toast provider and useToast hook
+-   [x] Toast notification system
+-   [x] Toast provider and useToast hook
 -   [ ] Modal/Dialog component
 -   [ ] Loading spinner component
 -   [ ] Skeleton loading component
