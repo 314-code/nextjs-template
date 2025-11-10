@@ -32,7 +32,13 @@ export const ToastProvider = ({ children, maxToasts = 5, position = "top-right" 
 	return (
 		<>
 			{children}
-			<ToastContainer onDismiss={toast.dismiss} onPause={toast.pause} onResume={toast.resume} position={position} toasts={toasts} />
+			<ToastContainer
+				onDismiss={toast.dismiss}
+				onPause={toast.pause}
+				onResume={toast.resume}
+				position={position}
+				toasts={toasts}
+			/>
 		</>
 	);
 };

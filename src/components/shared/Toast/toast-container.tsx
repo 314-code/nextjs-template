@@ -13,7 +13,13 @@ interface ToastContainerProps {
 	position?: ToastPosition;
 }
 
-export const ToastContainer = ({ toasts, onDismiss, onPause, onResume, position = "top-right" }: ToastContainerProps) => {
+export const ToastContainer = ({
+	toasts,
+	onDismiss,
+	onPause,
+	onResume,
+	position = "top-right",
+}: ToastContainerProps) => {
 	if (toasts.length === 0) {
 		return null;
 	}
