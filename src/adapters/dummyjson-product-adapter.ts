@@ -5,7 +5,7 @@ export type InternalProductFilters = {
 	category?: string;
 };
 
-export type DummyJSONProduct = {
+export type Product = {
 	id: number;
 	title: string;
 	description: string;
@@ -20,16 +20,14 @@ export type DummyJSONProduct = {
 	discountPercentage?: number;
 };
 
-export type DummyJSONProductsResponse = {
-	products: DummyJSONProduct[];
+export type ProductsResponse = {
+	products: Product[];
 	total: number;
 	skip: number;
 	limit: number;
 };
 
-export class DummyJSONProductAdapter
-	implements DataAdapter<DummyJSONProduct, InternalProductFilters, DummyJSONProductsResponse, number>
-{
+export class DummyJSONProductAdapter implements DataAdapter<Product, InternalProductFilters, ProductsResponse, number> {
 	private readonly limit: number;
 
 	constructor(limit = 20) {
@@ -59,7 +57,7 @@ export class DummyJSONProductAdapter
 		return `/products?${params.toString()}`;
 	}
 
-	parseResponse(response: DummyJSONProductsResponse) {
+	parseResponse(response: ProductsResponse) {
 		return {
 			items: response.products,
 			total: response.total,

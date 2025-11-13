@@ -1,3 +1,4 @@
+import { AnnouncementProvider } from "@/providers/AnnouncementProvider";
 import { QueryProvider } from "@/providers/QueryProvider";
 import "@/styles/globals.css";
 import type { Metadata } from "next";
@@ -26,7 +27,9 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-				<QueryProvider>{children}</QueryProvider>
+				<AnnouncementProvider>
+					<QueryProvider>{children}</QueryProvider>
+				</AnnouncementProvider>
 			</body>
 		</html>
 	);

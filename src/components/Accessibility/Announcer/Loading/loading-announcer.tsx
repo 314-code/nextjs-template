@@ -1,4 +1,5 @@
 "use client";
+import type { UseInfiniteQueryResult, UseQueryResult } from "@tanstack/react-query";
 import { useCallback, useEffect } from "react";
 import { useAnnouncement } from "@/providers/AnnouncementProvider";
 
@@ -10,6 +11,12 @@ type LoadingAnnouncerProps = {
 	completedMessage?: string;
 	errorMessage?: string;
 	delay?: number;
+};
+
+export const toAnnouncerStatus = (
+	queryStatus: UseQueryResult["status"] | UseInfiniteQueryResult["status"]
+): StatusType => {
+	return queryStatus === "pending" ? "loading" : queryStatus;
 };
 
 export const LoadingAnnouncer = ({
