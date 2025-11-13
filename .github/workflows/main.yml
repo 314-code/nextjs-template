@@ -22,4 +22,4 @@ jobs:
             - name: Install dependencies
               run: pnpm install
             - name: Lint files
-              run: pnpm check
+              run: pnpm biome ci .
