@@ -1,16 +1,10 @@
 import type { DataAdapter } from "./data-adapter";
 
-/**
- * Internal filter model - what your app uses
- */
 export type InternalProductFilters = {
 	search?: string;
 	category?: string;
 };
 
-/**
- * Product type matching DummyJSON API
- */
 export type DummyJSONProduct = {
 	id: number;
 	title: string;
@@ -26,9 +20,6 @@ export type DummyJSONProduct = {
 	discountPercentage?: number;
 };
 
-/**
- * DummyJSON API response structure
- */
 export type DummyJSONProductsResponse = {
 	products: DummyJSONProduct[];
 	total: number;
@@ -36,10 +27,6 @@ export type DummyJSONProductsResponse = {
 	limit: number;
 };
 
-/**
- * Adapter for DummyJSON Products API
- * Handles: skip-based pagination, search/category endpoints, response parsing
- */
 export class DummyJSONProductAdapter
 	implements DataAdapter<DummyJSONProduct, InternalProductFilters, DummyJSONProductsResponse, number>
 {
