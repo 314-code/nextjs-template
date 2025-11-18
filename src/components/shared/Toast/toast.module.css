@@ -2,7 +2,7 @@
 	display: flex;
 	align-items: flex-start;
 	gap: var(--spacing-sm);
-	width: clamp(300px, 10vw ,420px);
+	width: clamp(300px, 10vw, 420px);
 	padding: var(--spacing-md);
 	background-color: var(--color-surface);
 	border: 1px solid var(--color-border);

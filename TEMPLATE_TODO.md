@@ -29,7 +29,7 @@
 -   [x] Toast notification system
 -   [x] Toast provider and useToast hook
 -   [ ] Modal/Dialog component
--   [ ] Loading spinner component
+-   [x] Loading spinner component
 -   [ ] Skeleton loading component
 -   [ ] Empty state component
 
