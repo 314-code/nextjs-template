@@ -1,7 +1,6 @@
 "use client";
 
-import chalk from "chalk";
-import { createContext, type ReactNode, useCallback, useContext, useRef } from "react";
+import { createContext, useCallback, useContext, useRef } from "react";
 
 export type AnnouncementPriority = "polite" | "assertive";
 
@@ -12,7 +11,7 @@ type AnnouncementContextType = {
 
 const AnnouncementContext = createContext<AnnouncementContextType | null>(null);
 
-export const AnnouncementProvider = ({ children }: { children: ReactNode }) => {
+export const AnnouncementProvider = ({ children }: React.PropsWithChildren) => {
 	const politeRef = useRef<HTMLOutputElement>(null);
 	const assertiveRef = useRef<HTMLDivElement>(null);
 	const timeoutRef = useRef<NodeJS.Timeout>(null);
@@ -58,9 +57,7 @@ export const useAnnouncement = () => {
 	const context = useContext(AnnouncementContext);
 
 	if (!context) {
-		throw new Error(
-			`${chalk.blueBright("useAnnouncement")} must be used within ${chalk.redBright("AnnouncementProvider")}`
-		);
+		throw new Error("useAnnouncement must be used within AnnouncementProvider");
 	}
 
 	return context;

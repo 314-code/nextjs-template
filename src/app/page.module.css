@@ -1,7 +1,6 @@
 .container {
 	display: flex;
 
-	/* background-color: var(--color-primary); */
 	flex-flow: column;
 	align-items: center;
 	justify-content: center;
@@ -11,12 +10,4 @@
 	font-weight: var(--font-weight-semibold);
 
 	color: var(--color-action-text);
-}
-
-.temp-block {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 100%;
-	aspect-ratio: 4 / 1;
 }
