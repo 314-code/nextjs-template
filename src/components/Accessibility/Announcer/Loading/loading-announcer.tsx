@@ -6,7 +6,7 @@ import { useAnnouncement } from "@/providers/AnnouncementProvider";
 type StatusType = "loading" | "success" | "error";
 
 type LoadingAnnouncerProps = {
-	status: StatusType;
+	status?: StatusType;
 	loadingMessage?: string;
 	completedMessage?: string;
 	errorMessage?: string;
@@ -20,7 +20,7 @@ export const toAnnouncerStatus = (
 };
 
 export const LoadingAnnouncer = ({
-	status,
+	status = "loading",
 	completedMessage = "Content loaded",
 	errorMessage = "Error loading content",
 	loadingMessage = "Loading content",
