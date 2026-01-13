@@ -24,11 +24,23 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
 			className
 		);
 
+		const ariaDescribedBy = () => {
+			if (error) {
+				return `${checkboxId}-error`;
+			}
+
+			if (helperText) {
+				return `${checkboxId}-helper`;
+			}
+
+			return undefined;
+		};
+
 		return (
-			<div className={styles.checkboxWrapper}>
-				<div className={styles.checkboxContainer}>
+			<div className={styles.wrapper}>
+				<div className={styles.container}>
 					<input
-						aria-describedby={error ? `${checkboxId}-error` : helperText ? `${checkboxId}-helper` : undefined}
+						aria-describedby={ariaDescribedBy()}
 						aria-invalid={hasError}
 						className={checkboxClassName}
 						disabled={isDisabled}
